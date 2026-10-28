@@ -1,0 +1,141 @@
+RUEDA LIBRE v1.0
+Bitacora del proyecto
+
+RESUMEN
+Sitio informativo en tres paginas: inicio, tarifas y rutas, y reservas.
+Se usa HTML para estructura y contenido, CSS para presentacion adaptable y
+estados de interaccion. No se necesita JavaScript para las funciones incluidas.
+El formulario aplica validacion nativa del navegador; para recibir y guardar
+reservas hace falta conectar un servidor o servicio de formularios.
+
+ESQUEMA DE REGIONES
+Inicio:
+header > nav
+main > section portada
+     > section quienes somos
+     > section nuestros servicios > article por servicio
+     > section como alquilar
+     > section encuentranos
+footer
+
+Tarifas:
+header > nav
+main > section titulo
+     > section tarifas de bicicletas > tabla
+     > section recorridos > tabla
+     > aside informacion adicional
+footer
+
+Reservas:
+header > nav
+main > section titulo
+     > aside horario
+     > section formulario
+footer
+
+HTML, CSS Y PETICION AL SERVIDOR
+El navegador solicita el documento HTML con una peticion GET. Al leerlo solicita
+la hoja CSS y las imagenes mediante otras peticiones GET; las fuentes se cargan
+desde Google Fonts. HTML define contenido, enlaces, tablas, formulario y
+semantica. CSS define color, tipografia, distribucion, adaptacion y foco.
+JavaScript no se usa en esta version. El formulario declara POST y comprueba
+campos en el navegador, pero una web estatica no procesa el envio: se necesita
+configurar un servicio de reservas antes de recibir solicitudes reales.
+
+RUTAS RELATIVAS
+Origen                 Destino                    Ruta escrita
+index.html             Tarifas                    paginas/tarifas.html
+index.html             Reservas                   paginas/reservas.html
+index.html             Seccion de recorridos       paginas/tarifas.html#recorridos
+paginas/tarifas.html   Inicio                     ../index.html
+paginas/tarifas.html   Reservas                   reservas.html
+paginas/reservas.html  Inicio                     ../index.html
+paginas/reservas.html  Tarifas                    tarifas.html
+index.html             Logo                       img/Logo.png
+paginas/tarifas.html   Logo                       ../img/Logo.png
+paginas/reservas.html  CSS                        ../css/styles.css
+
+ELECCIONES DEL FORMULARIO
+Correo usa type=email para comprobar el formato. Fecha usa type=date y limites
+minimo y maximo para evitar fechas fuera del periodo. Documento y celular usan
+pattern para comprobar digitos y longitud; bicicleta usa radio para permitir
+una sola opcion. Los campos tienen etiquetas asociadas y nombres de envio.
+
+PRUEBAS DE VALIDACION NATIVA
+Campo       Dato de prueba           Esperado                         Resultado
+Nombre      Al                       Rechazado (menos de 3)             Rechazado
+Nombre      Ana                      Aceptado (3 caracteres)           Aceptado
+Documento   ABC123                   Rechazado por pattern             Rechazado
+Documento   123456                   Aceptado (6 digitos)              Aceptado
+Correo      ana@                     Rechazado por formato             Rechazado
+Celular     3001234567               Aceptado                          Aceptado
+Celular     1234567890               Rechazado (no inicia en 3)        Rechazado
+Celular     300123                   Rechazado (longitud incorrecta)   Rechazado
+Fecha       2026-10-31               Rechazado (antes del minimo)      Rechazado
+Fecha       2026-11-01               Aceptado (fecha minima)            Aceptado
+Fecha       2027-01-01               Rechazado (despues del maximo)    Rechazado
+Cantidad    0 o 7                    Rechazado (rango 1 a 6)           Rechazado
+Cantidad    3                        Aceptado                          Aceptado
+Comentarios 301 caracteres tecleados Se limita a 300 caracteres        300 caracteres; valido
+Politicas   casilla sin marcar       Rechazado por required            Rechazado
+Politicas   casilla marcada          Aceptado                          Aceptado
+
+ACCESIBILIDAD
+Hallazgo                         Correccion
+Documento sin idioma declarado   lang="es" en las tres paginas
+Imagen sin alternativa           Texto alternativo descriptivo
+Enlace generico o ambiguo        Enlaces con destino y accion claros
+Jerarquia de titulos confusa     Un h1 por pagina y secciones con h2/h3
+Menu dificil de reconocer        nav con aria-label y lista de enlaces
+Foco dificil de ver               Indicador :focus-visible de alto contraste
+Tablas sin contexto              caption y encabezados con scope
+Formulario sin etiquetas          label asociado por for e id
+WhatsApp fijo cerca del pie       Espacio inferior reservado en el documento
+
+CONTRASTE WCAG 2.2
+Combinacion                  Relacion   Clasificacion
+Blanco sobre Verde Ruta      5.31:1     Apta para texto normal
+Blanco sobre Naranja Pedal   2.22:1     No apta
+Azul Noche sobre Naranja     7.20:1     Apta para texto normal
+Azul Noche sobre Crema       14.83:1    Apta para texto normal
+Gris Asfalto sobre Crema     5.57:1     Apta para texto normal
+Verde Ruta sobre Crema       4.93:1     Apta para texto normal
+Naranja Pedal sobre Crema    2.06:1     No apta
+Blanco sobre Azul Noche      15.97:1    Apta para texto normal
+
+Mapa de uso: texto principal Azul Noche sobre Crema; texto secundario Gris
+Asfalto sobre Crema; enlaces Verde Ruta sobre Crema; botones Verde Ruta con
+texto Crema; Naranja Pedal con texto Azul Noche. No usar texto blanco sobre
+naranja ni texto naranja sobre crema.
+
+CSS, ESPECIFICIDAD Y MODELO DE CAJA
+La hoja externa css/styles.css usa variables de marca, Montserrat y Open Sans,
+escala de espacios, estilos compartidos, tarjetas, tablas y formulario.
+El conflicto original era #menu a (especificidad 1,0,1) frente a .activo
+(0,1,0): el selector con ID prevalece. Se resolvio usando selectores del menu
+que consideran el estado activo, sin !important.
+Todos los elementos usan box-sizing: border-box. No se registran mediciones de
+DevTools en esta bitacora; el ancho de las tarjetas depende del viewport y de
+la distribucion adaptable.
+
+CIERRE DE LOS 12 MINIRETOS
+1. Repositorio y documento base.
+2. Contenido, imagenes y enlaces de inicio.
+3. Tarifas y recorridos en tablas accesibles.
+4. Navegacion entre las tres paginas.
+5. Estructura semantica.
+6. Formulario de reservas.
+7. Validacion nativa y teclado.
+8. Accesibilidad, contraste y preparacion para publicacion.
+9. Variables, tipografias y hoja externa.
+10. Menu activo, enlaces, botones y foco.
+11. Tarjetas, tablas, formulario y modelo de caja.
+12. Etiqueta Nuevo, WhatsApp y consolidacion de estilos.
+
+ESTADO DE ENTREGA
+Las nueve rutas de navegacion entre paginas se comprobaron en local; las tres
+paginas cargan con un main, las imagenes locales existen y las validaciones
+principales fueron probadas en el navegador. No se comprobaron aun cambios en
+DevTools ni una URL de GitHub Pages. El envio real de reservas queda pendiente
+de conectar un servicio backend. Publicar y cambiar la descripcion del
+repositorio requiere acceso a GitHub.

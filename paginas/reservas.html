@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta el horario de atención y solicita tu reserva de bicicleta con Rueda Libre.">
+    <title>Reservas | Rueda Libre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-nav" aria-label="Navegación principal">
+            <a class="brand" href="../index.html" aria-label="Rueda Libre, inicio">
+                <img src="../img/Logo.png" alt="Logo de Rueda Libre" width="56" height="56">
+            </a>
+            <ul id="menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="tarifas.html">Tarifas y rutas</a></li>
+                <li><a class="activo" href="reservas.html" aria-current="page">Reservas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section class="page-heading" aria-labelledby="titulo-principal">
+            <h1 id="titulo-principal">Reserva tu bicicleta</h1>
+            <p>Completa tus datos y cuéntanos qué plan tienes.</p>
+        </section>
+
+        <aside class="content-section extra-info" aria-labelledby="titulo-horario">
+            <h2 id="titulo-horario">Horario de atención</h2>
+            <dl class="schedule-list">
+                <dt>Lunes a viernes</dt>
+                <dd>7:00 a. m. a 7:00 p. m.</dd>
+                <dt>Sábados, domingos y festivos</dt>
+                <dd>6:00 a. m. a 2:00 p. m.</dd>
+            </dl>
+            <p>También puedes escribirnos a <a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a>.</p>
+        </aside>
+
+        <section class="content-section" aria-labelledby="titulo-formulario">
+            <h2 id="titulo-formulario">Formulario de reserva</h2>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Tus datos</legend>
+                    <label for="nombre">Nombre completo</label>
+                    <input id="nombre" name="nombre" type="text" required minlength="3" autocomplete="name">
+
+                    <label for="documento">Número de documento</label>
+                    <input id="documento" name="documento" type="text" required inputmode="numeric" pattern="[0-9]{6,10}" title="Ingresa entre 6 y 10 números, sin puntos ni espacios.">
+
+                    <label for="correo">Correo electrónico</label>
+                    <input id="correo" name="correo" type="email" required autocomplete="email">
+
+                    <label for="celular">Celular</label>
+                    <input id="celular" name="celular" type="tel" required inputmode="numeric" pattern="3[0-9]{9}" title="Ingresa 10 dígitos y comienza por 3." autocomplete="tel">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Tu alquiler</legend>
+                    <label for="fecha">Fecha del alquiler</label>
+                    <input id="fecha" name="fecha" type="date" required min="2026-11-01" max="2026-12-31">
+
+                    <p class="form-label">Tipo de bicicleta</p>
+                    <label class="choice-label" for="bicicleta-urbana"><input id="bicicleta-urbana" name="bicicleta" type="radio" value="urbana" required> Urbana</label>
+                    <label class="choice-label" for="bicicleta-montana"><input id="bicicleta-montana" name="bicicleta" type="radio" value="montana"> Montaña</label>
+                    <label class="choice-label" for="bicicleta-electrica"><input id="bicicleta-electrica" name="bicicleta" type="radio" value="electrica"> Eléctrica</label>
+
+                    <label for="plan">Plan</label>
+                    <select id="plan" name="plan" required>
+                        <option value="">Selecciona un plan</option>
+                        <option value="1-hora">1 hora</option>
+                        <option value="medio-dia">Medio día (4 h)</option>
+                        <option value="dia-completo">Día completo</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad de bicicletas</label>
+                    <input id="cantidad" name="cantidad" type="number" required min="1" max="6">
+
+                    <label for="recorrido">Recorrido guiado</label>
+                    <select id="recorrido" name="recorrido" required>
+                        <option value="ninguno">Ninguno</option>
+                        <option value="rio-y-parques">Río y Parques</option>
+                        <option value="sabores-de-barrio">Sabores de Barrio</option>
+                        <option value="reto-las-palmas">Reto Las Palmas</option>
+                    </select>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Confirmación</legend>
+                    <label for="comentarios">Comentarios</label>
+                    <textarea id="comentarios" name="comentarios" rows="4" maxlength="300"></textarea>
+
+                    <label class="choice-label" for="politicas">
+                        <input id="politicas" name="politicas" type="checkbox" required>
+                        Acepto las políticas de alquiler.
+                    </label>
+                </fieldset>
+
+                <button class="button" type="submit">Enviar solicitud</button>
+            </form>
+            <p class="form-note">El formulario valida los datos en esta página. Para recibir solicitudes se necesita conectar un servicio de reservas.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p><strong>Rueda Libre</strong></p>
+        <p><a href="mailto:hola@ruedalibre.example">hola@ruedalibre.example</a></p>
+        <p>© 2026 Rueda Libre. Todos los derechos reservados.</p>
+    </footer>
+
+    <a class="whatsapp-link" href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</body>
+</html>
